@@ -21,4 +21,8 @@ export class StudentService {
     async getStudentById(id: string): Promise<Student | null>{
         return this.studentModal.findById(id).exec();
     }
+
+    async updateStudent(id: string, data: Partial<Student>): Promise<Student | null>{
+        return this.studentModal.findByIdAndUpdate(id, data, {new:true}).exec();
+    }
 }
