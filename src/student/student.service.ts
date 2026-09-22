@@ -23,6 +23,17 @@ export class StudentService {
     }
 
     async updateStudent(id: string, data: Partial<Student>): Promise<Student | null>{
+        // return this.studentModal.findByIdAndUpdate(id, data, {new:true}).exec(); // this is patch logic partial updates
+        const updated = await this.studentModal.findByIdAndUpdate
+        (id,{
+            name: data.name ?? null,
+            age: data.age ?? null,
+            email: data.email ?? null,
+        }, {overwrite: true, new: true});
+        return updated;
+    }
+
+    async patchStudent(id: string, data: Partial<Student>): Promise<Student | null>{
         return this.studentModal.findByIdAndUpdate(id, data, {new:true}).exec();
     }
 }
