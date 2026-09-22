@@ -36,4 +36,8 @@ export class StudentService {
     async patchStudent(id: string, data: Partial<Student>): Promise<Student | null>{
         return this.studentModal.findByIdAndUpdate(id, data, {new:true}).exec();
     }
+
+    async deleteStudent(id: string): Promise<Student | null>{
+        return this.studentModal.findByIdAndDelete(id).exec();
+    }
 }
